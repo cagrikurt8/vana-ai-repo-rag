@@ -82,6 +82,4 @@ async def ask(question: Question):
         config={"configurable": {"thread_id": "1"}}
     )
 
-    #response["answer"] = response["answer"].content
-
     return response
