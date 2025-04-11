@@ -1,6 +1,6 @@
 # Test Task for Querying Vana Project
 
-This repository is built for connecting to Vanna project and querying the project information and codebase. Question-answering takes roughly 8-9 seconds depending on the question and answer length.
+This repository is built for connecting to Vanna project and querying the project information and codebase. Question-answering takes roughly 8-9 seconds depending on the question and answer length. Chroma is selected for this project because of its simplicity and flexibility to work on local environments. For vectorization, 'text-embedding-3-small' by OpenAI is selected because of its performance and reduced cost for creating embeddings. GPT-4o is used for the chat. LangChain and LangGraph are used for the agent development. UV is chosen as the package manager.
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
