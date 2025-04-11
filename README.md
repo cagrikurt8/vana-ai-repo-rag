@@ -22,6 +22,7 @@ Make sure you have the following tools installed:
     ```sh
     docker build -t mbtiitsm-test-task:latest .
     ```
+    Vector DB is located in the repo folder, so I will be copied into the image as well. No worries for indexing.
 
 4. Start the container and map the ports to access it locally:
     ```sh
@@ -34,3 +35,11 @@ Make sure you have the following tools installed:
     "question": "What is Vanna AI?"
 }
 ```
+
+6. <b>(Optional)</b> If you want to test the vector database creation steps, make sure you have installed all the requirements in the pyproject.toml in your machine via 'uv' or 'pip'. Then you can run the 'vector_index.py' script with one of the following commands:
+    ```sh
+    python vector_index.py
+    ```
+    ```sh
+    uv run vector_index.py
+    ```
