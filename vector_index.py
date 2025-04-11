@@ -12,6 +12,13 @@ import time
 
 
 def process_md_files():
+    '''
+    Load markdown files from the Vanna GitHub repository and split them into chunks.
+    The markdown files are filtered to include only those with a .md extension.
+    The chunks are created using the RecursiveCharacterTextSplitter with a chunk size of 1000 and an overlap of 200.
+    Returns:
+        List[Document]: A list of Document objects representing the markdown chunks.
+    '''
     loader = GithubFileLoader(
         repo="vanna-ai/vanna",
         branch="main",
@@ -33,6 +40,13 @@ def process_md_files():
 
 
 def process_python_code(docstring_model: AzureChatOpenAI):
+    '''
+    Load Python files from the Vanna GitHub repository and generate docstrings and comment lines for the code.
+    The Python files are filtered to exclude certain directories and files.
+    The docstring and comment lines are generated using the AzureChatOpenAI model.
+    Returns:
+        List[Document]: A list of Document objects representing the Python code with docstrings and comments added.
+    '''
     doc_string_sys_message = "You are a DocString and commentline generator. " \
     "You will be given a code snippet and you will generate a docstring and comment lines for the code. " \
     "Return the provided code snippet with the docstring and comment lines added. " \
@@ -71,6 +85,13 @@ def process_python_code(docstring_model: AzureChatOpenAI):
 
 
 def create_vector_index(documents, embedding_model: AzureOpenAIEmbeddings):
+    '''
+    Create a vector index using the Chroma database and the provided embedding model.
+    The documents are added to the vector store and a similarity search is performed.
+    Args:
+        documents (List[Document]): A list of Document objects to be indexed.
+        embedding_model (AzureOpenAIEmbeddings): The embedding model to use for vectorization.
+    '''
     vector_store = Chroma(
         collection_name="test-task-collection",
         embedding_function=embedding_model,
@@ -86,6 +107,9 @@ def create_vector_index(documents, embedding_model: AzureOpenAIEmbeddings):
 
 
 if __name__ == "__main__":
+    '''
+    Main function to load environment variables, process markdown and Python files, and create a vector index.
+    '''
     load_dotenv()
 
     embedding_ada = AzureOpenAIEmbeddings(

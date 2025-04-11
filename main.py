@@ -45,7 +45,15 @@ def search_vanna_knowledge_base(question: str):
 
 
 class QAAgent:
+    '''
+    A class to handle the question-answering agent using Azure OpenAI and Vanna knowledge base.
+    '''
     def __init__(self, llm: AzureChatOpenAI):
+        '''
+        Initialize the QAAgent with an LLM and tools.
+        Args:
+            llm (AzureChatOpenAI): The language model to use for generating responses.
+        '''
         self.llm = llm
         self.tools = [search_vanna_knowledge_base]
         self.llm_with_tools = self.llm.bind_tools(self.tools)
@@ -54,8 +62,13 @@ class QAAgent:
     
     
     def call_model(self, state: State):
-        #context = self.chroma.similarity_search(question, k=5)
-        #messages = self.prompt.invoke({"question": question, "context": context})
+        '''
+        Call the language model with the provided state.
+        Args:
+            state (State): The current state of the agent.
+        Returns:
+            dict: The response from the language model.
+        '''
         messages = [SystemMessage(content=self.sys_msg)] + state.get("messages")
         response = self.llm_with_tools.invoke(messages)
 
@@ -63,6 +76,13 @@ class QAAgent:
 
 
     def build_graph(self, checkpointer: MemorySaver = None):
+        '''
+        Build the state graph for the agent.
+        Args:
+            checkpointer (MemorySaver): Optional checkpointing mechanism.
+        Returns:
+            StateGraph: The constructed state graph.
+        '''
         builder = StateGraph(State)
 
         # Define nodes
@@ -83,11 +103,23 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
+    '''
+    Root endpoint for the FastAPI application.
+    Returns:
+        dict: A welcome message.
+    '''
     return {"Message": "Welcome to test-task!"}
 
 
 @app.post("/ask/")
 async def ask(question: Question):
+    '''
+    Endpoint to handle questions and return answers.
+    Args:
+        question (Question): The question to ask.
+    Returns:
+        dict: The question, answer, context, and response metadata.
+    '''
     # Initialize the LLM and embedding model
     llm = AzureChatOpenAI(
         api_version="2024-10-21",
