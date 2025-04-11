@@ -14,7 +14,7 @@ Make sure you have the following tools installed:
 
 ## Setup
 
-1. Create a .env file inside the repo with the help of the .env.example file. Fill in the necessary credentials.
+1. Create a .env file inside the repo with the help of the .env.example file. Fill in the necessary credentials. GITHUB_ACCESS_TOKEN is used for getting Vana repo content. It is not necessary to run the application.
 
 2. Make sure Docker Desktop is running.
 
