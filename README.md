@@ -53,6 +53,7 @@ Make sure you have the following tools installed:
 ![alt text](screenshots/image-3.png)
 
 ### Out-of-scope Questions
+![alt text](screenshots/image-7.png)
 ![alt text](screenshots/image-4.png)
 ![alt text](screenshots/image-5.png)
 
