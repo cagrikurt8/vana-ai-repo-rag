@@ -8,6 +8,7 @@ from langchain_core.messages import SystemMessage, HumanMessage
 from dotenv import load_dotenv
 import os
 import logging
+import time
 
 
 def process_md_files():
@@ -56,7 +57,8 @@ def process_python_code(docstring_model: AzureChatOpenAI):
         commented_page_content = docstring_model.invoke(messages + [HumanMessage(content=page_content)]).content
         # Replace the original content with the commented code
         python_docs[idx].page_content = commented_page_content
-    '''
+    ''' # not used this time, but can be used to generate docstrings and comments for the code
+
     python_chunks = RecursiveCharacterTextSplitter.from_language(
         chunk_size=500,
         chunk_overlap=50,
@@ -103,6 +105,11 @@ if __name__ == "__main__":
     documents = md_documents + python_documents
     logging.info(f"Total documents to be indexed: {len(documents)}")
     # Create vector index
+    start_time = time.time()
     create_vector_index(documents, embedding_ada)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"Vector index creation took {elapsed_time:.2f} seconds.")
+    logging.info(f"Vector index creation took {elapsed_time:.2f} seconds.")
     logging.info("Vector index created successfully.")
     
