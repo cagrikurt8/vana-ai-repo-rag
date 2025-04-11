@@ -1,10 +1,11 @@
 # Test Task for Querying Vana Project
 
-This repository is built for connecting to Vanna project and querying the project information and codebase.
+This repository is built for connecting to Vanna project and querying the project information and codebase. Question-answering takes roughly 8-9 seconds depending on the question and answer length.
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
 - [Setup](#setup)
+- [Screenshots](#screenshots)
 
 ## Prerequisites
 
@@ -43,3 +44,17 @@ Make sure you have the following tools installed:
     ```sh
     uv run vector_index.py
     ```
+
+## Screenshots
+### Vana-related Questions
+![alt text](screenshots/image.png)
+![alt text](screenshots/image-1.png)
+![alt text](screenshots/image-2.png)
+![alt text](screenshots/image-3.png)
+
+### Out-of-scope Questions
+![alt text](screenshots/image-4.png)
+![alt text](screenshots/image-5.png)
+
+### Vector Index Creation Time
+![alt text](screenshots/image-6.png)
