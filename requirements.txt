@@ -1,0 +1,9 @@
+langchain==0.3.23
+langchain-openai==0.3.12
+langchain_community==0.3.21
+langchain-chroma>=0.2.2
+langgraph==0.3.27
+python-dotenv==1.1.0
+unstructured==0.17.2
+libmagic==1.0
+fastapi[standard]==0.115.12
