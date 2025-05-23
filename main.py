@@ -111,7 +111,7 @@ def read_root():
     return {"Message": "Welcome to test-task!"}
 
 
-@app.post("/ask/")
+@app.post("/ask")
 async def ask(question: Question):
     '''
     Endpoint to handle questions and return answers.
@@ -123,7 +123,7 @@ async def ask(question: Question):
     # Initialize the LLM and embedding model
     llm = AzureChatOpenAI(
         api_version="2024-10-21",
-        azure_deployment="gpt-4o"
+        azure_deployment="gpt-4.1"
     )
     agent = QAAgent(llm)
     # Initialize the graph
